@@ -819,6 +819,14 @@ class Psi_host
 
 
 				break;
+			case PSI_SVC_OPENVZ:
+
+				$c = new Psi_Service_OPENVZ();
+				$result = $c->check();
+
+
+				break;
+
 
 			default:
 				$c = new Tcp_Connect($this->name, $this->port, $this->timeout);

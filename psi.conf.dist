@@ -69,6 +69,8 @@ HOST;localhost;PROC;;contact_id;name=processes,max=200
 # Example Qmail Queue
 HOST;localhost;QMAILQUEUE;;contact_id;name=processes,max_local=200,max_remote=100
 
+# Example OpenVZ Fatal resource shortage
+HOST;localhost;OPENVZ;;contact_id;name=openvz
 
 
 # Example webpage content change

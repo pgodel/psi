@@ -5,7 +5,7 @@ include_once(dirname(__FILE__).'/definitions.inc.php');
 
 /**********************************************************************
 *                      PSI - PHP Simple Informer                      *
-*                              Version 1.5                            *
+*                              Version 1.6                            *
 *                   By Pablo Godel - pablo@godel.com.ar               *
 *                    http://www.godel.com.ar/psi/                     *
 *                                                                     *
@@ -1192,5 +1192,43 @@ class Psi_Service_QMAILQUEUE extends Psi_Service
 	}
 }
 
+
+class Psi_Service_OPENVZ extends Psi_Service 
+{
+    function check()
+	{
+        $res = parent::check();
+        
+        exec( 'dmesg', $data );
+        
+        $error = '';
+        
+        foreach( $data as $line )
+        {
+            if ( strpos( $line, 'Fatal resource shortage') !== false )
+            {
+                $error = $line;
+                break;
+            }
+        }
+        
+        if ( !empty( $error ) )
+        {
+			$this->result_data = array(
+			'hostname' 	=> 'OPENVZ',
+			'port' 		=> PSI_SVC_OPENVZ,
+			'timeout'	=> 0,
+			'errno' 	=> 2,
+			'errstr'	=> 'Fatal error:: '.$error,
+			);
+
+			$this->errno = 2;
+			$this->errstr = 'Fatal error:: '.$error;
+        }
+        
+        
+	}
+    
+}
 
 ?>

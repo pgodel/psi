@@ -19,6 +19,7 @@
 	define('PSI_SVC_CPU',		'CPU');
 	define('PSI_SVC_PROC',		'PROC');
 	define('PSI_SVC_QMAILQUEUE',		'QMAILQUEUE');
+	define('PSI_SVC_OPENVZ',	'OPENVZ');
 	
 	
 	/*

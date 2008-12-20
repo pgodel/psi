@@ -31,6 +31,8 @@ FEATURES
 
 CHANGELOG
 ---------
+- 1.6 : Fixed bug reading CPU load
+        Added support for openvz dmesg fatal error messages
 - 1.5 : Fixed bug which prevented succesful connection to lighttpd web servers.
 - 1.4 : Send one email per contact for multiple events in one run.
 		Path to php binary changed to /usr/bin/php to accomodate more common installations.

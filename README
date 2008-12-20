@@ -1,0 +1,104 @@
+/**********************************************************************
+*                      PSI - PHP Simple Informer                      *
+*                              Version 1.5                            *
+*                   By Pablo Godel - pablo@godel.com.ar               *
+*                    http://www.godel.com.ar/psi/                     *
+*                                                                     *
+*  SUPPORT FURTHER DEVELOPMENT, DONATE: http://www.godel.com.ar/psi/  *
+*                                                                     *
+*                                                                     *
+*          This is code is distributed under the GPL license          *
+**********************************************************************/
+
+README
+------
+
+PSI - PHP Simple Informer is a very simple network services monitoring application written in PHP. It can be run as a command line application (PHP compiled as cgi is required) or as a web php file.
+
+Although is very simple, it does its function very well. Is very easy to configure with a single file and a couple of simple lines.
+
+I don't know if this is going to be useful for anybody, but it's for me. I have been testing several applications, and all of them are more complex that what I need or they don't perform so simple tasks.
+
+FEATURES
+--------
+- Very simple installation and configuration: one single config file and done.
+- Multiple hosts configuration
+- Support for special features for services: mysql, http, https.
+- Multiple contacts configuration
+- Alerts are sent by email or with an executed external command.
+- Logs issues to log file.
+- Report / status web page.
+
+CHANGELOG
+---------
+- 1.5 : Fixed bug which prevented succesful connection to lighttpd web servers.
+- 1.4 : Send one email per contact for multiple events in one run.
+		Path to php binary changed to /usr/bin/php to accomodate more common installations.
+		Renamed psi.conf to psi.conf.dist to not overwrite user configuration.
+		Moved from_email setting to psi.conf file.
+		Added list of processes to CPU load and process count alerts.
+	
+- 1.3 : Support for PHP 5.x
+		Added support for CPU load, process count, and web page change.
+- 1.2 : Added FTP support
+
+INSTALLATION
+------------
+- Unpack the file psi-1.5.tar.gz in your desired final location:
+$ gunzip -c psi-1.5.tar.gz | tar xf -
+$ cd psi
+
+- Configure psi.conf (Read the info and examples inside the file)
+$ vi psi.conf
+
+- And run psi.php (php compiled as a cgi or CLI and placed in /usr/local/bin/php is required)
+$ ./psi.php
+
+- Place it in crontab to run it periodically, i.e.: */1 * * * * root /usr/local/psi-1.5/psi.php > /dev/null 2>&1
+
+- link www to your web root directory to be able to access the web reports.
+
+FAQ
+---
+1) What is PSI - PHP Simple Informer ?
+It's a very simple and basic network services monitoring application. It can check tcp ports for the moment.
+
+2) Why is written in PHP ?
+Because it's a great scripting language and I love it! Simple, fast to write and very powerful! 
+More info at http://www.php.net
+
+3) Why another network services monitoring program ?
+Because all of the available applications are more complex that what I need or they don't perform so simple tasks. I don't know if this application is useful for anybody, but it is for me.
+
+4) When I set to receive alters by emails, I never receive them.
+Check that PHP is properly configured to use a mail delivery system (sendmail?) in the php.ini file. Test the following quick script to see if PHP sends emails correctly:
+
+<?php 
+	mail("me@domain.com", "Test", "Testing");
+?>
+And watch your email log files to see if the email is sent correctly.
+
+5) Why this page sucks?
+Because I don't have time to put it better.
+
+BUGS
+----
+Probably not much because the program is so simple. But if found, report to pablo@godel.com.ar 
+
+TODO
+----
+If I get spare time, I will add more features like:
+- Add additional special services.
+- Logging to a file or maybe a DB to have a history and be able to make graphics (partially implemented).
+- Create a webpage to check the status (done, maybe enhanced).
+- Create a web-based administration interface (pending).
+- Any more ideas? 
+
+CONTACT
+-------
+If you like this little application,  have ideas, comments or want to help, please contact me, I want to hear about you.
+If this application is useful for you, your contribution will be greatly appreciated. Check PSI's home page: http://www.godel.com.ar/psi/
+
+Pablo Godel 
+pablo@godel.com.ar
+http://www.godel.com.ar/psi/

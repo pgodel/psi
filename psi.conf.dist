@@ -1,0 +1,101 @@
+# PSI configuration file
+# By Pablo Godel <pablo@godel.com.ar>
+# http://www.godel.com.ar/psi/
+# Version 1.5
+
+
+# line format description:
+# parameters between {} are required, <> are optional
+
+# Main definitions
+# DEFAULT_TIMEOUT;{TIMEOUT};
+# This is the default timeout in seconds. If not available, 30 seconds will be used.
+#
+# DEFAULT_CONTACT_ID;{contact_id};
+# This is the default contact ID to be used, if is not specified, the first contact defined will # be used.
+
+DEFAULT_TIMEOUT;30;
+DEFAULT_CONTACT_ID;contact_id;
+
+WWW_USERID;admin
+WWW_PASSWD;psi
+
+#
+# example: 
+# DEFAULT_TIMEOUT;30
+# Hosts configuration
+# HOST;{HOSTNAME};{PORT};<TIMEOUT>;{CONTACT_ID};<ADTIONAL_PARAMETERS>
+# HOST             : indicator that the line contains a HOST definition.
+# {HOSTANME}       : name of the server to check
+# {PORT}           : Port to open
+# <TIMEOUT>        : Time ni seconds to try to open the connection. If ommited, 
+#                    the default value will be used.
+# {CONTACT_ID)     : ID of the contact that will receive the alert, if ommited, 
+#                    the default contact will be used.
+#					 Specify several contacts separated by comma (PSI >= 1.0)
+# <ADITIONAL_PARAMETERS>  : Additional parameters depend on the port that we are connecting.
+#							common parameter: name - shows a friendly name on the web reports for the entry.
+#							port 3306 (mysql): user, pass, db.
+							port 80 / 443 (http/https): url (default: /)
+
+# 
+# examples:
+# HOST;www.domain.com;80;30;your_name;
+# HOST;www.domain.com;80;;;
+# HOST;server.domani.com;25;30;contact_id;
+
+# Example Mysql
+HOST;192.168.0.1;3306;30;contact_id;user=userid,pass=password,db=myDB,name=main mysql
+
+# Example HTTPS
+HOST;192.168.0.1;443;30;contact_id;name=main https,url=/index.html
+
+# Example HTTP
+HOST;192.168.0.1;80;30;contact_id;name=main web,url=/index.html
+
+# Example FTP
+HOST;192.168.0.1;21;30;contact_id;user=userid,pass=password,dir=/test,name=my ftp server
+
+# Example SSH
+HOST;192.168.0.1;22;30;contact_id;name=my server ssh
+
+
+# Example CPU
+HOST;localhost;CPU;;contact_id;name=cpu,max=5
+
+# Example Processes count
+HOST;localhost;PROC;;contact_id;name=processes,max=200
+
+# Example Qmail Queue
+HOST;localhost;QMAILQUEUE;;contact_id;name=processes,max_local=200,max_remote=100
+
+
+
+# Example webpage content change
+HOST;www.godel.com.ar;WEB;30;contact_id;name=psi webpage,url=/psi/index.html
+
+
+# Contacts configuration
+# CONTACT;{CONTACT_ID};<FULLNAME>;{CONTACT_DESTINATION};
+#
+# CONTACT               : indicator that the line contains a CONTACT definition
+# {CONTACT_ID}          : Contact ID, must be used in the HOST lines or in the default contact id                                                        				                    
+#                         definition.
+# <FULLNAME>            : full name of the contact.
+# {CONTACT_DESTINATION} : Where to send the alert. This can me an email address, or command to 	
+#                         execute.
+
+# Example Contact with multiple emails
+CONTACT;contact_id;Your Name;your@email.com,alert@yourdomain.com;
+
+# Example of contact executing an external command to send alert.
+CONTACT;contact_id2;;/usr/local/bin/alert;
+
+FROM_EMAIL;psi@domain.com
+
+
+
+
+
+
+

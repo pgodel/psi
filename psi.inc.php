@@ -142,8 +142,11 @@ class Psi
 	{
 		if (!file_exists(PSI_LOG_DIR))
 		{
-			echo "Error: Cannot open log directory '".PSI_LOG_DIR."'!!!\n\n";
-			exit(1);
+		    if ( ! mkdir( PSI_LOG_DIR ) )
+		    {		    
+    			echo "Error: Cannot open log directory '".PSI_LOG_DIR."'!!!\n\n";
+    			exit(1);
+    		}
 		}
 	}
 

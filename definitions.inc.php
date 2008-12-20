@@ -2,7 +2,7 @@
 
 /**********************************************
 *        PSI definititions file
-*        Version 1.5
+*        Version 1.6
 *        Please, refer to the README file
 ***********************************************/
 
